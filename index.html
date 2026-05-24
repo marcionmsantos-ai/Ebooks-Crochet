@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Método Crochet Completo — De Cero a Profesional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f5ede1;
+  --cream-light: #faf5ec;
+  --terracotta: #c45a3c;
+  --terracotta-dark: #a04528;
+  --brown-deep: #2b1810;
+  --brown-soft: #4a3528;
+  --gold: #b8893a;
+  --ivory: #fffdf8;
+  --sage: #7a8456;
+  --shadow-warm: rgba(43,24,16,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',sans-serif; background:var(--cream); color:var(--brown-deep); line-height:1.6; overflow-x:hidden; }
+
+/* TOP BAR */
+.top-bar { background:var(--brown-deep); color:var(--cream); text-align:center; padding:11px 20px; font-size:13px; letter-spacing:0.5px; font-weight:500; }
+.top-bar span { color:var(--gold); font-weight:700; }
+
+/* HERO */
+.hero { background:linear-gradient(135deg,var(--cream) 0%,var(--cream-light) 100%); padding:32px 32px 56px; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-10%; right:-5%; width:600px; height:600px; background:radial-gradient(circle,rgba(196,90,60,0.1) 0%,transparent 70%); border-radius:50%; }
+
+/* 3 colunas: texto | imagem | card */
+.hero-grid { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1fr 1.3fr 1fr; gap:40px; align-items:center; position:relative; z-index:1; }
+.hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(196,90,60,0.1); color:var(--terracotta-dark); padding:7px 16px; border-radius:50px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:20px; border:1px solid rgba(196,90,60,0.2); }
+.hero-tag::before { content:''; width:6px; height:6px; background:var(--terracotta); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+h1.hero-title { font-family:'Fraunces',serif; font-size:clamp(32px,3.2vw,54px); font-weight:600; line-height:1.05; letter-spacing:-0.03em; color:var(--brown-deep); margin-bottom:18px; }
+h1.hero-title em { font-style:italic; color:var(--terracotta); font-weight:400; }
+.hero-subtitle { font-size:15px; line-height:1.65; color:var(--brown-soft); margin-bottom:0; }
+
+/* Imagem central */
+.hero-img-wrap { position:relative; }
+.hero-img-wrap img { width:100%; border-radius:20px; box-shadow:0 32px 80px rgba(43,24,16,0.22); display:block; }
+.hero-img-badge { position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); background:var(--terracotta); color:var(--ivory); padding:11px 26px; border-radius:50px; font-size:12px; font-weight:700; letter-spacing:0.5px; white-space:nowrap; box-shadow:0 8px 24px rgba(196,90,60,0.35); }
+.hero-img-full { display:none; }
+
+/* OFFER CARD */
+.offer-card { background:var(--ivory); border-radius:24px; padding:32px 28px; box-shadow:0 30px 80px var(--shadow-warm),0 1px 0 rgba(43,24,16,0.04); position:relative; border:2px solid rgba(196,90,60,0.15); text-align:center; }
+.offer-badge { position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--terracotta); color:var(--ivory); padding:8px 24px; border-radius:50px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; box-shadow:0 8px 24px rgba(196,90,60,0.3); white-space:nowrap; }
+.offer-title { font-family:'Fraunces',serif; font-size:20px; font-weight:600; color:var(--brown-deep); margin-bottom:6px; line-height:1.2; }
+.offer-label { font-size:11px; color:var(--brown-soft); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:16px; }
+.price-block { display:flex; align-items:baseline; gap:12px; margin:18px 0; padding:16px 0; border-top:1px solid rgba(43,24,16,0.08); border-bottom:1px solid rgba(43,24,16,0.08); justify-content:center; }
+.price-old { font-family:'Fraunces',serif; font-size:20px; color:var(--brown-soft); text-decoration:line-through; text-decoration-color:var(--terracotta); }
+.price-new { font-family:'Fraunces',serif; font-size:52px; font-weight:700; color:var(--terracotta); line-height:1; letter-spacing:-0.02em; }
+.price-currency { font-size:17px; color:var(--brown-soft); font-weight:500; }
+.price-usd { display:block; margin-top:5px; font-size:13px; color:var(--brown-soft); }
+.includes { list-style:none; margin:16px 0 22px; text-align:left; }
+.includes li { display:flex; flex-direction:column; padding:7px 0; font-size:13px; color:var(--brown-soft); line-height:1.4; border-bottom:1px solid rgba(43,24,16,0.06); gap:2px; }
+.includes li:last-child { border-bottom:none; }
+.includes li::before { display:none; }
+.includes-check { display:inline-flex; align-items:center; gap:9px; }
+.includes-check::before { content:'✓'; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; min-width:20px; background:var(--sage); color:var(--ivory); border-radius:50%; font-size:12px; font-weight:700; }
+.includes-label { font-weight:700; color:var(--brown-deep); font-size:12px; text-transform:uppercase; letter-spacing:0.5px; }
+.includes-desc { font-size:13px; color:var(--brown-soft); padding-left:29px; }
+.cta { display:block; width:100%; background:var(--terracotta); color:var(--ivory); border:none; padding:21px; font-size:16px; font-weight:700; font-family:'Inter',sans-serif; border-radius:14px; cursor:pointer; text-decoration:none; text-align:center; letter-spacing:0.3px; transition:all 0.3s ease; box-shadow:0 12px 32px rgba(196,90,60,0.35); }
+.cta:hover { background:var(--terracotta-dark); transform:translateY(-2px); box-shadow:0 16px 40px rgba(196,90,60,0.45); }
+.cta-sub { display:block; text-align:center; margin-top:13px; font-size:13px; color:var(--brown-soft); }
+.cta-sub strong { color:var(--brown-deep); }
+
+/* SECTIONS */
+.section { padding:100px 40px; }
+.section-inner { max-width:1100px; margin:0 auto; }
+.section-tag { display:inline-block; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--terracotta); margin-bottom:14px; }
+.section-title { font-family:'Fraunces',serif; font-size:clamp(34px,4.2vw,54px); font-weight:600; line-height:1.1; letter-spacing:-0.02em; color:var(--brown-deep); margin-bottom:22px; max-width:800px; }
+.section-title em { font-style:italic; color:var(--terracotta); }
+.section-lead { font-size:18px; line-height:1.65; color:var(--brown-soft); max-width:700px; margin-bottom:56px; }
+
+/* PAIN SECTION */
+.pain { background:var(--brown-deep); color:var(--cream); }
+.pain .section-title,.pain .section-lead { color:var(--cream); }
+.pain .section-title em { color:var(--gold); }
+.pain .section-tag { color:var(--gold); }
+
+/* PAIN IMG BAND */
+.pain-img-band { width:100%; max-width:1100px; margin:0 auto 56px; border-radius:20px; overflow:hidden; height:340px; position:relative; }
+.pain-img-band img { width:100%; height:100%; object-fit:cover; object-position:center 40%; opacity:0.75; }
+.pain-img-band-overlay { position:absolute; inset:0; background:linear-gradient(to right,rgba(43,24,16,0.7) 0%,rgba(43,24,16,0.3) 60%,transparent 100%); display:flex; align-items:center; padding:40px 56px; }
+.pain-img-band-overlay blockquote { font-family:'Fraunces',serif; font-size:clamp(22px,2.5vw,32px); font-style:italic; color:var(--cream); max-width:560px; line-height:1.35; }
+.pain-img-band-overlay blockquote span { color:var(--gold); }
+
+.pain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; }
+.pain-item { background:rgba(245,237,225,0.05); border:1px solid rgba(245,237,225,0.1); border-radius:16px; padding:30px; transition:all 0.3s ease; }
+.pain-item:hover { background:rgba(245,237,225,0.08); transform:translateY(-4px); }
+.pain-item h3 { font-family:'Fraunces',serif; font-size:21px; font-weight:600; margin-bottom:10px; color:var(--cream); }
+.pain-item p { color:rgba(245,237,225,0.7); font-size:15px; line-height:1.6; }
+
+/* SOLUTION */
+.solution { background:var(--cream-light); }
+.solution-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.solution-img { border-radius:20px; overflow:hidden; box-shadow:0 24px 60px var(--shadow-warm); }
+.solution-img img { width:100%; display:block; border-radius:20px; }
+.solution-points { list-style:none; }
+.solution-points li { padding:20px 0; border-bottom:1px solid rgba(43,24,16,0.1); display:flex; gap:20px; align-items:flex-start; }
+.solution-points li:last-child { border-bottom:none; }
+.solution-points .num { font-family:'Fraunces',serif; font-size:30px; font-weight:600; color:var(--terracotta); line-height:1; min-width:46px; }
+.solution-points h4 { font-family:'Fraunces',serif; font-size:19px; font-weight:600; margin-bottom:5px; color:var(--brown-deep); }
+.solution-points p { font-size:15px; color:var(--brown-soft); line-height:1.5; }
+
+/* BENEFITS */
+.benefits { background:var(--cream); }
+.benefits-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:56px; }
+.benefit { background:var(--ivory); padding:32px 26px; border-radius:20px; border:1px solid rgba(43,24,16,0.06); transition:all 0.3s ease; }
+.benefit:hover { transform:translateY(-6px); box-shadow:0 20px 40px var(--shadow-warm); border-color:var(--terracotta); }
+.benefit-icon { width:52px; height:52px; background:rgba(196,90,60,0.1); border-radius:13px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:26px; }
+.benefit h3 { font-family:'Fraunces',serif; font-size:21px; font-weight:600; color:var(--brown-deep); margin-bottom:9px; line-height:1.2; }
+.benefit p { font-size:14px; color:var(--brown-soft); line-height:1.6; }
+
+/* INCLUDED */
+.included { background:var(--brown-deep); color:var(--cream); }
+.included .section-title,.included .section-lead { color:var(--cream); }
+.included .section-title em { color:var(--gold); }
+.included .section-tag { color:var(--gold); }
+.volumes { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+.volume { background:rgba(245,237,225,0.04); border:1px solid rgba(245,237,225,0.1); border-radius:20px; overflow:hidden; transition:all 0.3s ease; }
+.volume:hover { background:rgba(245,237,225,0.08); transform:translateY(-4px); }
+.volume-img { width:100%; aspect-ratio:3/4; overflow:hidden; }
+.volume-img img { width:100%; height:100%; object-fit:cover; object-position:top center; transition:transform 0.5s ease; }
+.volume:hover .volume-img img { transform:scale(1.04); }
+.volume-body { padding:24px 22px 28px; }
+.volume-num { font-family:'Fraunces',serif; font-size:12px; color:var(--gold); font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+.volume-title { font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--cream); margin-bottom:14px; line-height:1.25; }
+.volume-list { list-style:none; }
+.volume-list li { padding:5px 0; font-size:13px; color:rgba(245,237,225,0.72); padding-left:18px; position:relative; line-height:1.4; }
+.volume-list li::before { content:'◆'; position:absolute; left:0; color:var(--terracotta); font-size:9px; top:9px; }
+
+/* FLATLAY DIVIDER */
+.flatlay-divider { width:100%; height:420px; overflow:hidden; position:relative; }
+.flatlay-divider img { width:100%; height:100%; object-fit:cover; object-position:center 55%; }
+.flatlay-divider-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(20,10,5,0.82) 0%,rgba(20,10,5,0.65) 50%,rgba(20,10,5,0.82) 100%); display:flex; align-items:center; justify-content:center; }
+.flatlay-divider-text { text-align:center; color:#ffffff; }
+.flatlay-divider-text span { font-size:13px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:14px; text-shadow:0 2px 8px rgba(0,0,0,0.8); }
+.flatlay-divider-text h2 { font-family:'Fraunces',serif; font-size:clamp(32px,4vw,52px); font-weight:700; line-height:1.1; max-width:700px; color:#ffffff; text-shadow:0 3px 16px rgba(0,0,0,0.9), 0 1px 4px rgba(0,0,0,0.8); }
+
+/* BONUS */
+.bonus { background:linear-gradient(135deg,var(--terracotta),var(--gold)); color:var(--ivory); padding:80px 40px; position:relative; overflow:hidden; }
+.bonus::before,.bonus::after { content:''; position:absolute; width:400px; height:400px; border-radius:50%; background:rgba(255,253,248,0.07); }
+.bonus::before { top:-200px; left:-100px; }
+.bonus::after { bottom:-200px; right:-100px; }
+.bonus-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; position:relative; z-index:1; }
+.bonus-tag { display:inline-block; background:rgba(255,253,248,0.2); padding:8px 20px; border-radius:50px; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:22px; }
+.bonus h2 { font-family:'Fraunces',serif; font-size:clamp(32px,4vw,50px); font-weight:600; margin-bottom:18px; line-height:1.1; letter-spacing:-0.02em; }
+.bonus p { font-size:17px; opacity:0.95; line-height:1.6; margin-bottom:28px; }
+.bonus-value { display:inline-block; background:var(--brown-deep); padding:12px 28px; border-radius:12px; font-family:'Fraunces',serif; font-weight:600; font-size:15px; letter-spacing:0.5px; }
+.bonus-value span { color:var(--gold); font-weight:700; margin-left:6px; }
+.bonus-img { border-radius:20px; overflow:hidden; box-shadow:0 30px 70px rgba(43,24,16,0.25); }
+.bonus-img img { width:100%; display:block; border-radius:20px; }
+
+/* TESTIMONIALS */
+.testimonials { background:var(--cream); }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:56px; }
+.testi { background:var(--ivory); padding:30px; border-radius:18px; position:relative; border:1px solid rgba(43,24,16,0.06); }
+.testi::before { content:'"'; position:absolute; top:10px; right:22px; font-family:'Fraunces',serif; font-size:76px; color:var(--terracotta); opacity:0.13; line-height:1; }
+.stars { color:var(--gold); font-size:15px; margin-bottom:14px; letter-spacing:2px; }
+.testi-text { font-family:'Fraunces',serif; font-size:16px; font-style:italic; line-height:1.55; color:var(--brown-deep); margin-bottom:22px; }
+.testi-author { display:flex; align-items:center; gap:13px; }
+.author-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--terracotta),var(--gold)); display:flex; align-items:center; justify-content:center; color:var(--ivory); font-weight:700; font-family:'Fraunces',serif; font-size:17px; }
+.author-info strong { display:block; font-size:14px; color:var(--brown-deep); font-weight:600; }
+.author-info span { font-size:13px; color:var(--brown-soft); }
+
+/* FAQ */
+.faq { background:var(--cream-light); }
+.faq-list { margin-top:48px; max-width:800px; margin-left:auto; margin-right:auto; }
+.faq-item { background:var(--ivory); border-radius:14px; margin-bottom:12px; border:1px solid rgba(43,24,16,0.06); overflow:hidden; transition:all 0.3s ease; }
+.faq-item:hover { border-color:var(--terracotta); }
+.faq-question { padding:20px 26px; font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--brown-deep); cursor:pointer; display:flex; justify-content:space-between; align-items:center; list-style:none; }
+.faq-question::-webkit-details-marker { display:none; }
+.faq-question::after { content:'+'; font-size:22px; color:var(--terracotta); font-weight:300; }
+.faq-item[open] .faq-question::after { content:'−'; }
+.faq-answer { padding:0 26px 22px; color:var(--brown-soft); font-size:15px; line-height:1.65; }
+
+/* GUARANTEE */
+.guarantee { background:var(--cream); padding:80px 40px; }
+.guarantee-inner { max-width:860px; margin:0 auto; background:var(--ivory); border-radius:24px; border:2px solid var(--sage); display:grid; grid-template-columns:220px 1fr; gap:0; overflow:hidden; box-shadow:0 20px 50px var(--shadow-warm); }
+.guarantee-seal-col { background:var(--sage); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 28px; }
+.guarantee-seal-col img { width:140px; height:140px; object-fit:contain; border-radius:50%; }
+.guarantee-text-col { padding:44px 44px; }
+.guarantee-text-col h3 { font-family:'Fraunces',serif; font-size:28px; font-weight:600; color:var(--brown-deep); margin-bottom:14px; line-height:1.2; }
+.guarantee-text-col p { font-size:15px; color:var(--brown-soft); line-height:1.65; }
+
+/* FINAL CTA */
+.final-cta { background:var(--brown-deep); color:var(--cream); padding:100px 40px; position:relative; overflow:hidden; }
+.final-cta::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:800px; height:800px; background:radial-gradient(circle,rgba(196,90,60,0.15) 0%,transparent 60%); border-radius:50%; }
+.final-cta-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; position:relative; z-index:1; }
+.final-cta-text h2 { font-family:'Fraunces',serif; font-size:clamp(38px,5vw,60px); font-weight:600; line-height:1.06; letter-spacing:-0.02em; margin-bottom:22px; }
+.final-cta-text h2 em { font-style:italic; color:var(--gold); }
+.final-cta-text p { font-size:18px; opacity:0.85; line-height:1.6; margin-bottom:36px; }
+.final-price { display:flex; align-items:baseline; gap:12px; margin-bottom:28px; padding:20px 28px; background:rgba(245,237,225,0.07); border-radius:14px; border:1px solid rgba(245,237,225,0.13); }
+.final-price .old { font-family:'Fraunces',serif; font-size:20px; text-decoration:line-through; opacity:0.45; }
+.final-price .new { font-family:'Fraunces',serif; font-size:52px; font-weight:700; color:var(--gold); line-height:1; }
+.final-price .currency { font-size:15px; opacity:0.65; }
+.cta-final { display:block; background:var(--terracotta); color:var(--ivory); padding:23px 50px; font-size:17px; font-weight:700; border-radius:14px; text-decoration:none; letter-spacing:0.3px; transition:all 0.3s ease; box-shadow:0 14px 36px rgba(196,90,60,0.4); text-align:center; }
+.cta-final:hover { background:var(--terracotta-dark); transform:translateY(-3px); box-shadow:0 20px 50px rgba(196,90,60,0.5); }
+.final-trust { margin-top:22px; display:flex; flex-wrap:wrap; gap:16px; font-size:13px; opacity:0.7; }
+.final-trust span { display:flex; align-items:center; gap:7px; }
+.final-cta-img { border-radius:20px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.3); }
+.final-cta-img img { width:100%; display:block; border-radius:20px; }
+
+/* FOOTER */
+footer { background:var(--brown-deep); color:rgba(245,237,225,0.45); text-align:center; padding:28px 20px; font-size:13px; border-top:1px solid rgba(245,237,225,0.08); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+.hero-content > * { animation:fadeUp 0.8s ease backwards; }
+.hero-content > *:nth-child(1){animation-delay:0.1s}
+.hero-content > *:nth-child(2){animation-delay:0.25s}
+.hero-content > *:nth-child(3){animation-delay:0.4s}
+.offer-card{animation:fadeUp 0.9s ease 0.5s backwards}
+.hero-img-wrap{animation:fadeUp 0.9s ease 0.3s backwards}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .solution-grid,.bonus-inner,.final-cta-inner{grid-template-columns:1fr;gap:50px}
+  .offer-card{text-align:left}
+  .volumes,.benefits-grid,.testi-grid,.pain-grid{grid-template-columns:1fr}
+  .guarantee-inner{grid-template-columns:1fr}
+  .guarantee-seal-col{padding:36px;flex-direction:row;gap:20px}
+  .guarantee-seal-col img{width:100px;height:100px}
+  .section{padding:70px 24px}
+  .hero{padding:28px 20px 48px}
+  .pain-img-band{height:260px}
+  .flatlay-divider{height:300px}
+  .final-cta{padding:80px 24px}
+  .guarantee{padding:60px 24px}
+}
+@media(max-width:500px){
+  .top-bar{font-size:11px;padding:9px 14px}
+  .offer-card{padding:28px 20px}
+  .price-new{font-size:44px}
+  .final-price{flex-wrap:wrap;gap:8px}
+  .final-price .new{font-size:40px}
+  .volume-img{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  ⚡ OFERTA POR TIEMPO LIMITADO — <span>78% DE DESCUENTO HOY</span> — Solo $197 MXN / $10 USD
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+
+    <!-- COLUNA 1: TEXTO -->
+    <div class="hero-content">
+      <span class="hero-tag">Método Completo · 3 Volúmenes + Bonus</span>
+      <h1 class="hero-title">
+        Aprende crochet desde cero y crea piezas <em>que enamoran</em> en solo 7 días.
+      </h1>
+      <p class="hero-subtitle">
+        El método completo paso a paso que ya ayudó a miles de mujeres a transformar el hilo en arte — sin experiencia previa, sin frustración, sin tutoriales sueltos.
+      </p>
+    </div>
+
+    <!-- COLUNA 2: IMAGEM CENTRAL -->
+    <div class="hero-img-wrap">
+      <img src="img-hero-3livros.png" alt="Método Crochet Completo — 3 Volúmenes" loading="eager">
+      <div class="hero-img-badge">3 Volúmenes + Bonus Incluido</div>
+    </div>
+
+    <!-- COLUNA 3: CARD OFERTA -->
+    <div>
+      <div class="offer-card">
+        <div class="offer-badge">⚡ 78% OFF</div>
+        <div class="offer-label">Combo Digital Completo</div>
+        <h3 class="offer-title">Método Crochet Completo: De Cero a Profesional</h3>
+        <div class="price-block">
+          <div>
+            <div class="price-old">$891 MXN</div>
+            <div>
+              <span class="price-currency">$</span><span class="price-new">197</span>
+              <span class="price-currency">MXN</span>
+            </div>
+            <span class="price-usd">≈ $10 USD · Pago único · Acceso inmediato</span>
+          </div>
+        </div>
+        <ul class="includes">
+          <li>
+            <span class="includes-check"><span class="includes-label">Volumen 1</span></span>
+            <span class="includes-desc">Mi primer crochet — del cero en 7 días</span>
+          </li>
+          <li>
+            <span class="includes-check"><span class="includes-label">Volumen 2</span></span>
+            <span class="includes-desc">Crochet que Enamora — Proyectos para lucir y regalar</span>
+          </li>
+          <li>
+            <span class="includes-check"><span class="includes-label">Volumen 3</span></span>
+            <span class="includes-desc">Tu Arte, Tu Negocio — Técnicas para crear y vender</span>
+          </li>
+          <li>
+            <span class="includes-check"><span class="includes-label">🎁 Bonus</span></span>
+            <span class="includes-desc">37 Puntos Fáciles que se Venden Solos en Instagram</span>
+          </li>
+        </ul>
+        <a href="#comprar" class="cta">QUIERO MI MÉTODO AHORA →</a>
+        <span class="cta-sub">🔒 Pago seguro · <strong>Garantía de 7 días</strong></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section pain">
+  <div class="section-inner">
+    <span class="section-tag">¿Te identificas?</span>
+    <h2 class="section-title">Quieres aprender crochet... <em>pero algo siempre te detiene.</em></h2>
+    <p class="section-lead">Has visto cientos de videos en YouTube. Empezaste varias veces. Compraste hilos y agujas que terminaron olvidados. Y la frustración cada vez es mayor.</p>
+  </div>
+
+  <div class="pain-img-band">
+    <img src="img-materiais.png" alt="Materiales de crochet" loading="lazy">
+    <div class="pain-img-band-overlay">
+      <blockquote>"Quería aprender, pero cada tutorial me confundía más. <span>Sentía que el crochet no era para mí.</span>"</blockquote>
+    </div>
+  </div>
+
+  <div class="section-inner">
+    <div class="pain-grid">
+      <div class="pain-item">
+        <h3>Tutoriales que confunden más</h3>
+        <p>Cada video usa términos distintos, te saltan pasos importantes y nunca terminas un proyecto real.</p>
+      </div>
+      <div class="pain-item">
+        <h3>Empiezas y nunca terminas</h3>
+        <p>Comienzas con muchas ganas, pero a la tercera vuelta los puntos se ven raros y abandonas todo.</p>
+      </div>
+      <div class="pain-item">
+        <h3>Te falta orden y método</h3>
+        <p>Aprendes un punto aquí, otro allá... pero no sabes cómo unir todo para crear algo realmente bonito.</p>
+      </div>
+      <div class="pain-item">
+        <h3>Sueñas con crear y regalar</h3>
+        <p>Imaginas dar piezas únicas a tu familia, o incluso ganar dinero extra con tu arte. Pero no sabes por dónde empezar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section solution">
+  <div class="section-inner">
+    <span class="section-tag">La solución</span>
+    <h2 class="section-title">Un método completo. <em>De principiante a artesana segura.</em></h2>
+    <p class="section-lead">Olvídate de saltar entre tutoriales. El Método Crochet Completo te lleva paso a paso, desde tu primer punto hasta proyectos que parecen hechos por una profesional.</p>
+
+    <div class="solution-grid">
+      <div class="solution-img">
+        <img src="img-maos.png" alt="Manos crochetando con aguja de bambú" loading="lazy">
+      </div>
+      <ul class="solution-points">
+        <li>
+          <span class="num">01</span>
+          <div>
+            <h4>Empiezas desde absolutamente cero</h4>
+            <p>Hilos, agujas, puntos básicos. Te explico todo como si fuera la primera vez que tocas una aguja de crochet.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">02</span>
+          <div>
+            <h4>Avanzas con proyectos reales</h4>
+            <p>No aprendes técnicas sueltas. Cada lección termina con un proyecto que puedes usar, lucir o regalar.</p>
+          </div>
+        </li>
+        <li>
+          <span class="num">03</span>
+          <div>
+            <h4>Llegas a nivel profesional</h4>
+            <p>Amigurumi, gráficos, técnicas avanzadas. Piezas dignas de vender o regalar en cualquier ocasión especial.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section benefits">
+  <div class="section-inner">
+    <span class="section-tag">Lo que vas a vivir</span>
+    <h2 class="section-title">No solo aprendes crochet. <em>Transformas tu día a día.</em></h2>
+    <div class="benefits-grid">
+      <div class="benefit"><div class="benefit-icon">🧘‍♀️</div><h3>Calma y bienestar</h3><p>El crochet es terapia. Reduce el estrés, calma la mente y te regala momentos de paz en medio del caos diario.</p></div>
+      <div class="benefit"><div class="benefit-icon">💝</div><h3>Regalos únicos</h3><p>Cumpleaños, baby showers, navidad. Imagínate regalando piezas hechas con tus propias manos y todo tu cariño.</p></div>
+      <div class="benefit"><div class="benefit-icon">💰</div><h3>Ingreso extra</h3><p>Tus piezas pueden venderse. Bolsas, amigurumis, decoración. Muchas alumnas ya generan dinero extra con su crochet.</p></div>
+      <div class="benefit"><div class="benefit-icon">✨</div><h3>Orgullo personal</h3><p>La sensación de mostrar algo que tú creaste con tus manos no tiene precio. Tu autoestima sube proyecto tras proyecto.</p></div>
+      <div class="benefit"><div class="benefit-icon">🏡</div><h3>Hogar más cálido</h3><p>Tapetes, cojines, mantas. Decora tu casa con piezas únicas que ningún almacén puede vender.</p></div>
+      <div class="benefit"><div class="benefit-icon">👯‍♀️</div><h3>Comunidad y conexión</h3><p>El crochet une generaciones. Comparte con tu mamá, abuela, amigas. Crea recuerdos que duran para siempre.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="section included">
+  <div class="section-inner">
+    <span class="section-tag">Lo que recibes hoy</span>
+    <h2 class="section-title">3 volúmenes completos. <em>Un camino, sin atajos.</em></h2>
+    <p class="section-lead">Cada volumen te lleva más lejos. Juntos forman el método más completo para dominar el crochet de principio a fin.</p>
+
+    <div class="volumes">
+      <div class="volume">
+        <div class="volume-img">
+          <img src="img-vol1.png" alt="Mi Primer Crochet — Volumen 1" loading="lazy">
+        </div>
+        <div class="volume-body">
+          <div class="volume-num">Volumen 1 · Principiante</div>
+          <h3 class="volume-title">Mi Primer Crochet: Del Cero en 7 Días</h3>
+          <ul class="volume-list">
+            <li>Qué es el crochet, agujas y tipos de hilos</li>
+            <li>Puntos básicos: cadena, punto bajo, punto alto</li>
+            <li>Cómo sostener correctamente la aguja</li>
+            <li>Primer proyecto: posavasos o granny square</li>
+            <li>Errores comunes y cómo evitarlos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="volume">
+        <div class="volume-img">
+          <img src="img-vol2.png" alt="Crochet con Confianza — Volumen 2" loading="lazy">
+        </div>
+        <div class="volume-body">
+          <div class="volume-num">Volumen 2 · Intermedio</div>
+          <h3 class="volume-title">Crochet que Enamora: Proyectos Reales para Lucir y Regalar</h3>
+          <ul class="volume-list">
+            <li>Proyectos que la gente te va a pedir</li>
+            <li>Bolsa elegante paso a paso</li>
+            <li>Tapete decorativo con textura</li>
+            <li>Bufanda y accesorios para regalar</li>
+            <li>Cómo dar acabados que parecen de tienda</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="volume">
+        <div class="volume-img">
+          <img src="img-vol3b.png" alt="Crochet Sin Límites — Volumen 3" loading="lazy">
+        </div>
+        <div class="volume-body">
+          <div class="volume-num">Volumen 3 · Avanzado</div>
+          <h3 class="volume-title">Tu Arte, Tu Negocio: Técnicas Avanzadas para Crear y Vender</h3>
+          <ul class="volume-list">
+            <li>Amigurumi y técnicas de alto valor</li>
+            <li>Cómo fijar precios y vender tus piezas</li>
+            <li>Proyectos que generan ingresos reales</li>
+            <li>Presentación y fotografía de tus creaciones</li>
+            <li>De artesana a emprendedora creativa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLATLAY DIVIDER -->
+<div class="flatlay-divider">
+  <img src="img-flatlay.png" alt="Todo lo que necesitas para dominar el crochet" loading="lazy">
+  <div class="flatlay-divider-overlay">
+    <div class="flatlay-divider-text">
+      <span>El combo completo</span>
+      <h2>De principiante a emprendedora.<br><em style="color:var(--gold);font-style:italic;">Todo en un solo método.</em></h2>
+    </div>
+  </div>
+</div>
+
+<!-- BONUS -->
+<section class="bonus">
+  <div class="bonus-inner">
+    <div>
+      <span class="bonus-tag">🎁 Bonus Exclusivo — Solo por Hoy</span>
+      <h2>37 Puntos Fáciles que se Venden Solos en Instagram</h2>
+      <p>Los 37 puntos y proyectos más buscados y comprados en redes sociales — con fotos que enganchan, precios sugeridos y tips para publicar y vender desde el primer día.</p>
+      <div class="bonus-value">VALOR REAL: <span>$397 MXN — GRATIS</span></div>
+    </div>
+    <div class="bonus-img">
+      <img src="img-combo-colorido.png" alt="Combo completo Método Crochet" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+  <div class="section-inner">
+    <span class="section-tag">Lo que dicen las alumnas</span>
+    <h2 class="section-title">Más de 4,800 mujeres ya están <em>creando con sus manos.</em></h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Llevaba años queriendo aprender y siempre abandonaba. Con este método terminé mi primer tapete en una semana. ¡No lo podía creer!"</p>
+        <div class="testi-author"><div class="author-avatar">M</div><div class="author-info"><strong>María Fernanda</strong><span>Guadalajara, México</span></div></div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Empecé como hobby y ahora vendo mis amigurumis por Instagram. Recuperé el costo del método con mi primera venta."</p>
+        <div class="testi-author"><div class="author-avatar">L</div><div class="author-info"><strong>Lupita Ramírez</strong><span>CDMX, México</span></div></div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Lo recomiendo 100%. Es claro, ordenado y los proyectos son hermosos. Mi hija me pide que le enseñe también."</p>
+        <div class="testi-author"><div class="author-avatar">C</div><div class="author-info"><strong>Carmen Estrada</strong><span>Monterrey, México</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq">
+  <div class="section-inner">
+    <span class="section-tag">Preguntas frecuentes</span>
+    <h2 class="section-title">Resolvemos tus <em>últimas dudas.</em></h2>
+    <div class="faq-list">
+      <details class="faq-item"><summary class="faq-question">¿Funciona si nunca he tocado una aguja de crochet?</summary><div class="faq-answer">Sí, totalmente. El método está diseñado para principiantes absolutas. Empezamos desde lo más básico: qué aguja comprar, qué hilo usar, cómo sostenerla. Si sabes leer, puedes aprender crochet con este método.</div></details>
+      <details class="faq-item"><summary class="faq-question">¿Cómo recibo el método después de pagar?</summary><div class="faq-answer">El acceso es inmediato. Apenas confirmes tu compra recibirás un correo con los enlaces de descarga de los 3 volúmenes + el bonus. Puedes leerlos en tu celular, tablet o computadora.</div></details>
+      <details class="faq-item"><summary class="faq-question">¿Cuánto tiempo necesito al día para aprender?</summary><div class="faq-answer">Con 30 minutos al día puedes terminar tu primer proyecto en una semana. El material es tuyo para siempre, sin presión ni fecha límite.</div></details>
+      <details class="faq-item"><summary class="faq-question">¿Qué materiales necesito comprar?</summary><div class="faq-answer">Muy poco: una aguja de crochet básica y un ovillo de hilo. El primer volumen te dice exactamente cuál comprar para no equivocarte. Inversión mínima.</div></details>
+      <details class="faq-item"><summary class="faq-question">¿Y si no me gusta o no es para mí?</summary><div class="faq-answer">Tienes 7 días de garantía total. Si por cualquier motivo el método no te convence, te devolvemos el 100% de tu dinero sin preguntas. Cero riesgo.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-seal-col">
+      <img src="img-garantia.png" alt="Garantía 7 días — Satisfacción Garantizada" loading="lazy">
+    </div>
+    <div class="guarantee-text-col">
+      <h3>Tu compra está 100% protegida.</h3>
+      <p>Prueba el método completo durante 7 días. Si no terminas tu primer proyecto, si no sientes que estás aprendiendo de verdad, si simplemente cambias de opinión... te devolvemos cada peso. Sin preguntas, sin trámites. Tu satisfacción es nuestra prioridad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="comprar">
+  <div class="final-cta-inner">
+    <div class="final-cta-text">
+      <h2>Hoy es el día en que <em>finalmente aprendes.</em></h2>
+      <p>Por menos de lo que cuesta una salida al café, tienes en tus manos el método completo que te llevará de cero a profesional. Acceso inmediato. Para siempre tuyo.</p>
+      <div class="final-price">
+        <span class="old">$891 MXN</span>
+        <div><span class="currency">$</span><span class="new">197</span><span class="currency"> MXN · ≈ $10 USD</span></div>
+      </div>
+      <a href="#" class="cta-final">QUIERO EMPEZAR AHORA →</a>
+      <div class="final-trust">
+        <span>🔒 Pago 100% seguro</span>
+        <span>⚡ Acceso inmediato</span>
+        <span>✓ Garantía 7 días</span>
+        <span>📱 Cualquier dispositivo</span>
+      </div>
+    </div>
+    <div class="final-cta-img">
+      <img src="img-flatlay.png" alt="Método Crochet Completo — Combo digital" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Método Crochet Completo · Todos los derechos reservados
+</footer>
+
+</body>
+</html>
